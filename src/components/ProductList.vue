@@ -7,7 +7,8 @@
                      v-for="(product, index) in products" v-bind:key="product.id">
                     <div class="col-7" style="padding-top: 16px;"
                          v-bind:class="{'is-stock-out': product.isStockOut}">
-                        <input type="checkbox" v-on:change="makeStockOut(product)">
+                        <input type="checkbox"
+                               v-on:change="$emit('make-stock-out', product.id)">
                         {{ index + 1 }}.  {{ product.name }}
                     </div>
                     <div class="col-4" style="text-align: right; padding-top: 16px;">
@@ -19,7 +20,8 @@
                                style="outline: 0"
                                rounded
                                text
-                               color="error">X</v-btn>
+                               color="error">X
+                        </v-btn>
                     </div>
                 </div>
             </div>
@@ -35,20 +37,13 @@
     export default {
         name: 'ProductList',
         props: ['products'],
-        data() {
-            return {
-               productList: []
-            }
-        },
         methods: {
-            makeStockOut(product) {
-                var getProduct = this.products.find(x => x.id === product.id);
-                getProduct.isStockOut = !getProduct.isStockOut;
-            },
+            // makeStockOut(product) {
+            //     var getProduct = this.products.find(x => x.id === product.id);
+            //     getProduct.isStockOut = !getProduct.isStockOut;
+            // },
 
-            deleteProduct(product) {
-                this.products = this.products.filter(x => x.id !== product.id);
-            }
+
         }
     }
 </script>

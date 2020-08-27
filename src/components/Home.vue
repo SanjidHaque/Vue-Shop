@@ -4,6 +4,7 @@
                 <div class="col-xl-12">
                     <AddNewProduct v-on:new-product="addNewProduct"/>
                     <ProductList v-bind:products="products"
+                                 v-on:make-stock-out="makeStockOut"
                                  v-on:delete-product="deleteProduct"/>
                 </div>
             </div>
@@ -31,6 +32,10 @@
         methods: {
             addNewProduct(product) {
                 this.products.push(product);
+            },
+            makeStockOut(id) {
+                var getProduct = this.products.find(x => x.id === id);
+                getProduct.isStockOut = !getProduct.isStockOut;
             },
             deleteProduct(id) {
                 this.products = this.products.filter(x => x.id !== id);

@@ -55,7 +55,8 @@
                 var product = {
                     id: Date.now(),
                     name: this.name,
-                    price: this.price
+                    price: this.price,
+                    isStockOut: false
                 };
                this.$emit('new-product', product);
             }
